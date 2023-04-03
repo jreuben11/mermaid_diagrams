@@ -1,12 +1,65 @@
 # Mermaid Diagrams
 
-## Flowchart
+## Flowcharts
 ```mermaid
 graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+    A--oB;
+    A-->|blorp|C;
+    B<-->D;
+    C==>D;
+```
+
+```mermaid
+flowchart TB
+    A & B-.-> C & D
+
+```
+```mermaid
+flowchart TD
+    A[Start] --> B{Is it?}
+    B -->|Yes| C[OK]
+    C --> D[Rethink]
+    D --> B
+    B ---->|No| E[End]
+
+```
+```mermaid
+flowchart TB
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
+```
+
+```mermaid
+flowchart LR
+  subgraph TOP
+    direction TB
+    subgraph B1
+        direction RL
+        i1 -->f1
+    end
+    subgraph B2
+        direction BT
+        i2 -->f2
+    end
+  end
+  A --> TOP --> B
+  B1 --> B2
+
+```
+
+```mermaid
+flowchart LR
+    id1(Start)-->id2(Stop)
+    style id1 fill:#f9f,stroke:#333,stroke-width:4px
+    style id2 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
 ```
 
 ## Sequence Diagram
@@ -92,4 +145,10 @@ journey
       Sit down: 5: Me
 ```
 
-
+# mermaid CLI
+```bash
+npm install -g @mermaid-js/mermaid-cli
+mmdc -i input.mmd -o output.svg
+mkdir svg
+mv *.svg svg
+```
